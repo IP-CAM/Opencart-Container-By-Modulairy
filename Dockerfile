@@ -16,14 +16,17 @@ ENV DIR_IMAGE=${DIR_OPENCART}'image/'
 
 RUN apt-get clean && apt-get update && apt-get install unzip
 
-RUN apt-get install -y vim\
-  libfreetype-dev \
+RUN apt-get install -y \
+  libfreetype6-dev \
   libjpeg62-turbo-dev \
   libpng-dev \
   libzip-dev \
-  && docker-php-ext-configure gd --with-freetype --with-jpeg \
-  && docker-php-ext-install -j$(nproc) gd  && docker-php-ext-install zip \
-  && docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+  && docker-php-ext-configure gd --with-freetype --with-jpeg\
+  && docker-php-ext-install -j$(nproc) gd \
+  && docker-php-ext-install zip && && docker-php-ext-enable zip\
+  && docker-php-ext-enable mysqli
+
+RUN apt-get install -y vim
 
 RUN mkdir /storage && mkdir /opencart
 
@@ -39,25 +42,22 @@ RUN mv /tmp/opencart/$(if [ -n "$FOLDER" ]; then echo $FOLDER; else  unzip -l /t
 
 RUN rm -rf /tmp/opencart.zip && rm -rf /tmp/opencart && rm -rf ${DIR_OPENCART}install;
 
-# COPY opencart/upload ${DIR_OPENCART}
 RUN mv ${DIR_OPENCART}system/storage/* /storage
 COPY configs ${DIR_OPENCART}
 COPY php.ini ${PHP_INI_DIR}
 
 RUN a2enmod rewrite
 
+RUN chown -R www-data:www-data ${DIR_STORAGE}
 RUN chmod -R 555 ${DIR_OPENCART}
 RUN chmod -R 666 ${DIR_STORAGE}
 RUN chmod 555 ${DIR_STORAGE}
 RUN chmod -R 555 ${DIR_STORAGE}vendor
-RUN chown -R www-data:www-data ${DIR_LOGS}
 RUN chmod 755 ${DIR_LOGS}
 RUN chmod -R 644 ${DIR_LOGS}*
 
 RUN chown -R www-data:www-data ${DIR_IMAGE}
 RUN chmod -R 744 ${DIR_IMAGE}
-
-RUN chown -R www-data:www-data ${DIR_CACHE}
 RUN chmod -R 755 ${DIR_CACHE}
 
 RUN chmod -R 666 ${DIR_DOWNLOAD}
