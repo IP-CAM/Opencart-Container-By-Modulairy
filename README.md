@@ -13,8 +13,6 @@
   - [Environment Variables](#environment-variables)
   - [Installation](#installation)
 - [Using the Opencart Docker Container](#using_the_opencart_docker_container)
-  - [Prerequisites](#prerequisites)
-  - [Pull and Run the Container](#pull_and_run_the_container)
 - [Extension Installation](#extension_installation)
 - [Documentation](#documentation)
 - [Feedback and Contributions](#feedback-and-contributions)
@@ -140,12 +138,6 @@ For more detailed instructions and customization options, please refer to the In
 You can easily pull and run the Opencart Docker Container from our Docker Hub repository. This allows you to quickly deploy Opencart without the need to build the Docker image locally.
 
 ### Prerequisites
-
-Before you begin, make sure you have the following prerequisites installed:
-
-- Docker: [Installation Guide](https://docs.docker.com/get-docker/)
-
-### Pull and Run the Container
 
 1. Open your terminal or command prompt.
 
