@@ -71,18 +71,21 @@ Before you begin, ensure you have met the following requirements:
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/your/repository.git
-   cd repository
+   git clone https://github.com/modulairy/opencart-container.git
+   cd opencart-container
    ```
 2. Build the Docker container:
-    **Args**
+
+   **Args**
+
     - `DOWNLOAD_URL`: If you want to use a specific Opencart release, provide the download URL as a build argument.
     - `FOLDER`: If you have a specific folder within the Opencart source code, you can specify it as a build argument.
+
 
     ```sh
     docker build -t opencart-container .
     ```
-3. Running SQL Script on Database:
+4. Running SQL Script on Database:
     To run the SQL script on your database, follow these steps:
 
     a. Download the SQL script from the following link, replacing `<version>` with the specific version you are using:
@@ -95,7 +98,7 @@ Before you begin, ensure you have met the following requirements:
     mysql -u [DB_USER] -p[DB_PASSWORD] -h [DB_HOST] -P [DB_PORT] [DB_NAME] < opencart.sql
     ```
 
-4. Using External Persisted Storage (**Recommended for Production**):
+5. Using External Persisted Storage (**Recommended for Production**):
 
     If you plan to use external persisted storage, which is strongly recommended for production environments, follow these steps:
 
@@ -114,7 +117,7 @@ Before you begin, ensure you have met the following requirements:
     b. Copy the downloaded files to their respective directories in your external persisted storage. These directories are usually specified in your Opencart configuration.
 
 
-5. Run the container:
+6. Run the container:
     ```sh
     docker run -d -p 80:80 \
         -e DB_DRIVER=<driver_name> \
@@ -128,7 +131,7 @@ Before you begin, ensure you have met the following requirements:
         -e DB_PORT=<database_port> \
         opencart
     ```
-6. Access Opencart in your web browser at `http://localhost.`
+7. Access Opencart in your web browser at `http://localhost.`
 
 For more detailed instructions and customization options, please refer to the Installation Guide.
 
